@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-django-deployment
+spec:  # Corrected from 'specs' to 'spec'
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-django-pod
+  template:
+    metadata:
+      labels:
+        app: my-django-pod
+    spec:  # Corrected from 'specs' to 'spec'
+      containers:
+      - name: django-app
+        image: sahilgodara020/sahil_godara:python
+        ports:
+        - containerPort: 8000
+      imagePullSecrets:
+      - name: bsk-registry-secret
